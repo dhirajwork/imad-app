@@ -38,7 +38,7 @@ app.get('/hash/:input', function(req, res) {
    var hashedString = hash(req.params.input,'this-is-some-random-string');
    res.send(hashedString);
 });
-
+/*
 app.post('/create-user', function (req, res) {
   //username,password
   //{"username": "amit", "password": "password"}
@@ -59,13 +59,14 @@ app.post('/create-user', function (req, res) {
 });
 
 
+*/
 
 app.post('/login', function (req, res) {
   
   var username = req.body.username;
   var password = req.body.password;
   
-  pool.query('SELECT * from "user" WHERE username = $1', [username], function(err, result){
+  pool.query('SELECT * FROM "user" WHERE username = $1', [username], function(err, result){
        if(err){
             res.status(500).send(err.toString());
         }
@@ -85,8 +86,7 @@ app.post('/login', function (req, res) {
                      //set cookie with session id
                      //Internally on server side, it maps the session id to a object
                      //{ auth: {userId }}
-                    
-                    res.send('credentials correcr!');
+                     res.send('credentials correcr!');
                    
                 }
                 else{
