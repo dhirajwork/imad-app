@@ -38,6 +38,7 @@ app.get('/hash/:input', function(req, res) {
    var hashedString = hash(req.params.input,'this-is-some-random-string');
    res.send(hashedString);
 });
+var pool = new Pool(config);
 
 app.post('/login', function (req, res) {
   
@@ -50,7 +51,7 @@ app.post('/login', function (req, res) {
         }
         else{
             if(result.rows.length === 0){
-                res.send(403).send('username/password is invalid');
+               res.status(403).send('username/password is invalid')
             }
             else{
                 //Match the password
