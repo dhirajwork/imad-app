@@ -38,29 +38,6 @@ app.get('/hash/:input', function(req, res) {
    var hashedString = hash(req.params.input,'this-is-some-random-string');
    res.send(hashedString);
 });
-
-app.post('/create-user', function (req, res) {
-  //username,password
-  //{"username": "amit", "password": "password"}
-  //JSON
-  var username = req.body.username;
-  var password = req.body.password;
-  var salt = crypto.randomBytes(128).toString('hex');
-  var dbString = hash(password, salt);
-  pool.query('INSERT INTO "user" (username, password) VALUES ($1, $2)', [username, dbString], function(err, result){
-       if(err){
-            res.status(500).send(err.toString());
-        }
-        else{
-            res.send('User successfully created: ' + username);
-        }
-  });
-  
-});
-
-
-
-
 app.post('/login', function (req, res) {
   
   var username = req.body.username;
@@ -100,6 +77,30 @@ app.post('/login', function (req, res) {
   });
   
 });
+
+app.post('/create-user', function (req, res) {
+  //username,password
+  //{"username": "amit", "password": "password"}
+  //JSON
+  var username = req.body.username;
+  var password = req.body.password;
+  var salt = crypto.randomBytes(128).toString('hex');
+  var dbString = hash(password, salt);
+  pool.query('INSERT INTO "user" (username, password) VALUES ($1, $2)', [username, dbString], function(err, result){
+       if(err){
+            res.status(500).send(err.toString());
+        }
+        else{
+            res.send('User successfully created: ' + username);
+        }
+  });
+  
+});
+
+
+
+
+
 
 app.get('/check-login',function (req, res) {
     if(req.session && req.session.auth && req.session.auth.userId)
