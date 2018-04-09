@@ -51,7 +51,7 @@ app.post('/login', function (req, res) {
         }
         else{
             if(result.rows.length === 0){
-               
+               var error = {"error":"username not valid"};
                res.status(403).send(error);
             }
             else{
@@ -71,8 +71,8 @@ app.post('/login', function (req, res) {
                    
                 }
                 else{
-                     var error = {"error":"username or password inoreect"};
-                    res.send(403).send(error);
+                     var error1 = {"error":"username or password inoreect"};
+                    res.send(403).send(error1);
                 }
                 
                
