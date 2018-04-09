@@ -97,7 +97,7 @@ app.post('/create-user', function (req, res) {
             var result2 = {"result" :"User successfully created",
                 "name":"'+username+'"
             };
-            res.send(result);
+            res.send(result2);
         }
   });
   
