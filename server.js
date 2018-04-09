@@ -71,7 +71,7 @@ app.post('/login', function (req, res) {
                    
                 }
                 else{
-                     var error1 = {"error":"username or password incoreect"};
+                     var error1 = {"error":"username or password inoreect"};
                     res.send(403).send(error1);
                 }
                 
