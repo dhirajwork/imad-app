@@ -66,7 +66,7 @@ app.post('/login', function (req, res) {
                      //set cookie with session id
                      //Internally on server side, it maps the session id to a object
                      //{ auth: {userId }}
-                     var result1={ "message" :"credentials correcr!"};
+                     var result1={ "result" :"credentials correcr!"};
                      res.send(result1);
                    
                 }
