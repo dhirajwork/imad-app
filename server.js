@@ -51,7 +51,8 @@ app.post('/login', function (req, res) {
         }
         else{
             if(result.rows.length === 0){
-               res.status(403).send('username/password is invalid');
+               
+               res.status(403).send(error);
             }
             else{
                 //Match the password
@@ -70,7 +71,8 @@ app.post('/login', function (req, res) {
                    
                 }
                 else{
-                    res.send(403).send('username/password is invalid');
+                     var error = {"error":"username or password inoreect"};
+                    res.send(403).send(error);
                 }
                 
                
@@ -91,7 +93,7 @@ app.post('/create-user', function (req, res) {
   var dbString = hash(password, salt);
   pool.query('INSERT INTO "user" (username, password) VALUES ($1, $2)', [username, dbString], function (err, result){
        if(err){
-            res.status(500).send(err.toString());
+            res.status(500).send(err);
         }
         else{
             var result2 = {"result" :"User successfully created",
